@@ -80,7 +80,7 @@ const addNewUserController = async (req, res) => {
               referPayTimes: 0,
             });
           } else {
-            new User({
+            newUser = new User({
               firstName,
               lastName,
               phone,
