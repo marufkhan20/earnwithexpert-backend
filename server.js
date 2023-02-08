@@ -16,7 +16,11 @@ const {
 // configuration environment
 dotenv.config();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://earnwithexpert.netlify.app",
+  })
+);
 app.use(morgan("dev"));
 
 // set public folder
