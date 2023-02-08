@@ -61,21 +61,40 @@ const addNewUserController = async (req, res) => {
 
         if (hash) {
           // create new user
-          const newUser = new User({
-            firstName,
-            lastName,
-            phone,
-            trcCode,
-            email,
-            referralAuthor: referralId,
-            password: hash,
-            gender,
-            nationalId,
-            totalBalance: 0,
-            depositAmount: 0,
-            referralBalance: 0,
-            referPayTimes: 0,
-          });
+         let newUser;
+
+          if (referralId) {
+            user = new User({
+              firstName,
+              lastName,
+              phone,
+              trcCode,
+              email,
+              referralAuthor: referralId,
+              password: hash,
+              gender,
+              nationalId,
+              totalBalance: 0,
+              depositAmount: 0,
+              referralBalance: 0,
+              referPayTimes: 0,
+            });
+          } else {
+            new User({
+              firstName,
+              lastName,
+              phone,
+              trcCode,
+              email,
+              password: hash,
+              gender,
+              nationalId,
+              totalBalance: 0,
+              depositAmount: 0,
+              referralBalance: 0,
+              referPayTimes: 0,
+            });
+          }
 
           // save user in db
           await newUser.save();
